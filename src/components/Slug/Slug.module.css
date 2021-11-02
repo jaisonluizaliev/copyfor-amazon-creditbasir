@@ -1,0 +1,9 @@
+.section {
+  margin-top: 10px;
+}
+
+.imageDetails {
+  object-fit: contain;
+  max-width: 640px;
+  max-height: 640px;
+}
