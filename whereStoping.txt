@@ -1,17 +1,17 @@
-50:52
+01:42:49
 
 00:02:30   1 Introduction OK
 00:09:57   2 Install Tools OK
 00:17:52   3 Create Next App OK
 00:27:02   4 Add Styles To Layout OK
 00:32:38   5 Fix Material UI SSR OK
-00:41:48   6 List Products HERE 50:52
-00:53:13   7 Add Header Link 
-00:58:27   8 Route Product Link 
-01:08:02   9 Create Product Details Page 
-01:22:32 10 Add MaterialUI Theme 
-01:29:23 11 Create React Context 
-01:42:49 12 Connect To MongoDB 
+00:41:48   6 List Products HERE OK
+00:53:13   7 Add Header Link OK
+00:58:27   8 Route Product Link Ok
+01:08:02   9 Create Product Details Page OK 
+01:22:32 10 Add MaterialUI Theme OK
+01:29:23 11 Create React Context OK
+01:42:49 12 Connect To MongoDB Here
 01:56:02 13 Build Products API 
 02:07:41 14 Fetch Products From API
 02:19:52 15 Add Products To Shopping Cart

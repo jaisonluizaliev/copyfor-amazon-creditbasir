@@ -11,7 +11,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "js-cookie": "^3.0.1",
-    "mongoose": "^6.0.12",
+    "mongoose": "^5.13.2",
     "next": "11.1.2",
     "next-connect": "^0.10.1",
     "react": "17.0.2",
