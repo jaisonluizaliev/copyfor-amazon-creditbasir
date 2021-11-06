@@ -11,8 +11,8 @@
 01:08:02   9 Create Product Details Page OK 
 01:22:32 10 Add MaterialUI Theme OK
 01:29:23 11 Create React Context OK
-01:42:49 12 Connect To MongoDB Here
-01:56:02 13 Build Products API 
+01:42:49 12 Connect To MongoDB OK
+01:56:02 13 Build Products API Here 2:14:49
 02:07:41 14 Fetch Products From API
 02:19:52 15 Add Products To Shopping Cart
 02:34:02 16 Create Shopping Cart

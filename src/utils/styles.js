@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   footer: {
     textAlign: 'center',
     fontWeight: 'bolder',
-    margin:  20,
+    margin:  10,
   },
 });
 
