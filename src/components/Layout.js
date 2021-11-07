@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   CssBaseline,
   Switch,
+  Badge,
 } from '@material-ui/core';
 import useStyles from '../utils/styles';
 import { Store, actionTypes } from '../utils/Store';
@@ -18,7 +19,7 @@ import Cookies from 'js-cookie';
 
 export default function Layout({ children, title, description }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode } = state;
+  const { darkMode, cart } = state;
   const theme = createTheme({
     typography: {
       h1: {
@@ -71,7 +72,18 @@ export default function Layout({ children, title, description }) {
             <Switch checked={darkMode} onChange={darkModeHandler} />
             <NextLink href="/cart" passHref>
               <Link>
-                <Typography>Cart</Typography>
+                <Typography>
+                  {cart.cartItems.length > 0 ? (
+                    <Badge
+                      color="secondary"
+                      badgeContent={cart.cartItems.length}
+                    >
+                      Cart
+                    </Badge>
+                  ) : (
+                    'Cart' 
+                  )}
+                </Typography>
               </Link>
             </NextLink>
             <NextLink href="/login" passHref>

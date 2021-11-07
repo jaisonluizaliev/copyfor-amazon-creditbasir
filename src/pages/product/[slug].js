@@ -1,18 +1,45 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import styles from '../../styles/Slug.module.css';
 import Layout from '../../components/Layout';
-import { Button, Card, Grid, Link, List, ListItem, Typography } from '@material-ui/core';
+import {
+  Button,
+  Card,
+  Grid,
+  Link,
+  List,
+  ListItem,
+  Typography,
+} from '@material-ui/core';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import axios from 'axios';
+import { Store, actionTypes } from '../../utils/Store';
 
 export default function ProductSlug({ product }) {
-  console.log(product);
+  const { dispatch } = useContext(Store);
 
   if (!product) {
     return <Typography>Not Have this product</Typography>;
   }
+
+  // console.log(product._id)
+
+  const addToCartHandler = async () => {
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    
+
+    if (data.countInStock <= 0) {
+      console.log('sorry, product is out of stock');
+      return;
+    }
+
+    dispatch({
+      type: actionTypes.CART_ADD_ITEM,
+      payload: { ...product, quantity: 1 },
+    });
+  };
 
   return (
     <Layout title={product.name} description={product.description}>
@@ -82,7 +109,12 @@ export default function ProductSlug({ product }) {
                   </Grid>
                 </ListItem>
                 <ListItem>
-                  <Button fullWidth variant="contained" color="primary">
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    onClick={addToCartHandler}
+                  >
                     Add to Cart
                   </Button>
                 </ListItem>
@@ -104,6 +136,6 @@ export async function getServerSideProps(context) {
   return {
     props: {
       product: db.convertDocToObj(product),
-    }, // will be passed to the page component as props
+    },
   };
 }

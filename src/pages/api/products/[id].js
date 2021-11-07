@@ -1,14 +1,15 @@
 import nc from 'next-connect';
-import db from '../../../utils/db';
 import Product from '../../../models/Product';
+import db from '../../../utils/db';
 
 const handler = nc();
 
 handler.get(async (req, res) => {
+  const {id} = req.query;
   await db.connect();
-  const products = await Product.find({});
+  const product = await Product.findById(id);
   await db.disconnect();
-  return res.send(products);
+  res.send(product);
 });
 
 export default handler;
