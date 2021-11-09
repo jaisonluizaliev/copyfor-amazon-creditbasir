@@ -1,7 +1,14 @@
-onstopping
-git add . && git commit -m 'commit name' 
+on start
 
-02:19:52
+init a new branch with name of class
+git checkout -b 'name of class'
+
+on Finish class/tutorial
+
+git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' && git push
+
+
+02:34:02 
 
 00:02:30   1 Introduction OK
 00:09:57   2 Install Tools OK
@@ -17,8 +24,8 @@ git add . && git commit -m 'commit name'
 01:42:49 12 Connect To MongoDB OK
 01:56:02 13 Build Products API OK
 02:07:41 14 Fetch Products From API OK
-02:19:52 15 Add Products To Shopping Cart HERE
-02:34:02 16 Create Shopping Cart
+02:19:52 15 Add Products To Shopping Cart OK
+02:34:02 16 Create Shopping Cart HERE
 02:49:02 17 Dynamic Import Components
 02:53:02 18 Update Remove Cart Items
 03:06:27 19 Create Login Page

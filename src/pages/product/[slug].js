@@ -14,11 +14,13 @@ import {
 } from '@material-ui/core';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import {useRouter} from 'next/router'
 import axios from 'axios';
 import { Store, actionTypes } from '../../utils/Store';
 
 export default function ProductSlug({ product }) {
   const { dispatch } = useContext(Store);
+  const router = useRouter();
 
   if (!product) {
     return <Typography>Not Have this product</Typography>;
@@ -39,6 +41,8 @@ export default function ProductSlug({ product }) {
       type: actionTypes.CART_ADD_ITEM,
       payload: { ...product, quantity: 1 },
     });
+
+    router.push('/cart')
   };
 
   return (
