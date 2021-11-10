@@ -5,7 +5,7 @@ git checkout -b 'name of class'
 
 on Finish class/tutorial
 
-git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' && git push
+git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' &&  git pull && git push
 
 
 02:34:02 
@@ -25,8 +25,8 @@ git add . && git commit -m 'name commit' && git checkout main && git rebase 'nam
 01:56:02 13 Build Products API OK
 02:07:41 14 Fetch Products From API OK
 02:19:52 15 Add Products To Shopping Cart OK
-02:34:02 16 Create Shopping Cart HERE
-02:49:02 17 Dynamic Import Components
+02:34:02 16 Create Shopping Cart OK
+02:49:02 17 Dynamic Import Components HERE
 02:53:02 18 Update Remove Cart Items
 03:06:27 19 Create Login Page
 03:16:36 20 Seed Sample Users

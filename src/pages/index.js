@@ -10,14 +10,12 @@ import {
   Typography,
 } from '@material-ui/core';
 import NextLink from 'next/link';
-// import data from '../utils/data';
 import styles from '../styles/home.module.css';
 import db from '../utils/db';
 import Product from '../models/Product';
 
 export default function Home(props) {
   const {products} = props;
-  console.log(products)
 
   return (
     <Layout>
