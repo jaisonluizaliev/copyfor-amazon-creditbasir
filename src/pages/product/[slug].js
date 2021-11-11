@@ -19,30 +19,29 @@ import axios from 'axios';
 import { Store, actionTypes } from '../../utils/Store';
 
 export default function ProductSlug({ product }) {
-  const { dispatch } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const router = useRouter();
 
   if (!product) {
     return <Typography>Not Have this product</Typography>;
   }
 
-  // console.log(product._id)
-
   const addToCartHandler = async () => {
+    const existItem = state.cart.cartItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${product._id}`);
-    
 
-    if (data.countInStock <= 0) {
-      console.log('sorry, product is out of stock');
+    if (data.countInStock < quantity) {
+      alert('sorry, product is out of stock');
       return;
     }
 
     dispatch({
       type: actionTypes.CART_ADD_ITEM,
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity },
     });
 
-    router.push('/cart')
+    router.push('/cart');
   };
 
   return (

@@ -7,6 +7,7 @@ export const actionTypes = {
   DARK_MODE_ON: 'DARK_MODE_ON',
   DARK_MODE_OFF: 'DARK_MODE_OFF',
   CART_ADD_ITEM: 'CART_ADD_ITEM',
+  CART_REMOVE_ITEM: 'CART_REMOVE_ITEM',
 };
 
 const initialState = {
@@ -34,10 +35,17 @@ function reducer(state, action) {
             item.name === existItem.name ? newItem : item
           )
         : [...state.cart.cartItems, newItem];
- 
+
       Cookies.set('cardItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case actionTypes.CART_REMOVE_ITEM: {
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+      Cookies.set('cardItems', JSON.stringify(cartItems));
+      return { ...state, cart: { ...state.cart, cartItems } };
+    } 
 
     default:
       return state;

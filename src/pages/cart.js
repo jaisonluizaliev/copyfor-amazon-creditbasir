@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Store } from '../utils/Store';
+import { actionTypes, Store } from '../utils/Store';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import Layout from '../components/Layout';
@@ -21,12 +21,31 @@ import {
   TableRow,
   Typography,
 } from '@material-ui/core';
+import axios from 'axios';
 
 function CartScreen() {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
+
+  const updateCartHandler = async (item, quantity) => {
+     const { data } = await axios.get(`/api/products/${item._id}`);
+
+     if (data.countInStock < quantity) {
+       alert('sorry, product is out of stock');
+       return;
+     }
+
+     dispatch({
+       type: actionTypes.CART_ADD_ITEM,
+       payload: { ...item, quantity },
+     });
+  } 
+
+  const removeCartHandler = (item) => {
+    dispatch({type: actionTypes.CART_REMOVE_ITEM, payload: item })
+  }
   return (
     <Layout title="Shopping Cart">
       <Typography component="h1" variant="h1">
@@ -34,7 +53,10 @@ function CartScreen() {
       </Typography>
       {cartItems.length === 0 ? (
         <>
-          Cart Empty <NextLink href="/">Go Shopping</NextLink>
+          Cart Empty{' '}
+          <NextLink href="/" passHref >
+            <Link>Go Shopping</Link>
+          </NextLink>
         </>
       ) : (
         <Grid container spacing={1}>
@@ -73,7 +95,12 @@ function CartScreen() {
                         </NextLink>
                       </TableCell>
                       <TableCell align="right">
-                        <Select value={item.quantity}>
+                        <Select
+                          value={item.quantity}
+                          onChange={(e) =>
+                            updateCartHandler(item, e.target.value)
+                          }
+                        >
                           {[...Array(item.countInStock).keys()].map((x) => (
                             <MenuItem key={x + 1} value={x + 1}>
                               {x + 1}{' '}
@@ -83,7 +110,11 @@ function CartScreen() {
                       </TableCell>
                       <TableCell align="right">$ {item.price}</TableCell>
                       <TableCell align="right">
-                        <Button variant="contained" color="secondary">
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          onClick={() => removeCartHandler(item)}
+                        >
                           x
                         </Button>
                       </TableCell>
@@ -99,8 +130,8 @@ function CartScreen() {
                 <ListItem>
                   <Typography variant="h2">
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items) :<br/> 
-                    ${cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                    items) :<br />$
+                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
                   </Typography>
                 </ListItem>
                 <ListItem>
