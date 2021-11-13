@@ -8,7 +8,7 @@ on Finish class/tutorial
 git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' &&  git pull && git push
 
 
-02:53:02 
+Watch in 3:05:38
 
 00:02:30   1 Introduction OK
 00:09:57   2 Install Tools OK
@@ -27,9 +27,9 @@ git add . && git commit -m 'name commit' && git checkout main && git rebase 'nam
 02:19:52 15 Add Products To Shopping Cart OK
 02:34:02 16 Create Shopping Cart OK
 02:49:02 17 Dynamic Import Components OK
-02:53:02 18 Update Remove Cart Items HERE
-03:06:27 19 Create Login Page
-03:16:36 20 Seed Sample Users
+02:53:02 18 Update Remove Cart Items OK
+03:06:27 19 Create Login Page OK
+03:16:36 20 Seed Sample Users HERE
 03:22:16 21 Build Login API
 03:34:48 22 Complete Login Page
 03:48:23 23 Create Register Page

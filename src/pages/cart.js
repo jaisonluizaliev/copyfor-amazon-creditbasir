@@ -22,30 +22,36 @@ import {
   Typography,
 } from '@material-ui/core';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function CartScreen() {
+  const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
 
   const updateCartHandler = async (item, quantity) => {
-     const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await axios.get(`/api/products/${item._id}`);
 
-     if (data.countInStock < quantity) {
-       alert('sorry, product is out of stock');
-       return;
-     }
+    if (data.countInStock < quantity) {
+      alert('sorry, product is out of stock');
+      return;
+    }
 
-     dispatch({
-       type: actionTypes.CART_ADD_ITEM,
-       payload: { ...item, quantity },
-     });
-  } 
+    dispatch({
+      type: actionTypes.CART_ADD_ITEM,
+      payload: { ...item, quantity },
+    });
+  };
 
   const removeCartHandler = (item) => {
-    dispatch({type: actionTypes.CART_REMOVE_ITEM, payload: item })
-  }
+    dispatch({ type: actionTypes.CART_REMOVE_ITEM, payload: item });
+  };
+
+  const redirectToShipping = () => {
+    router.push('/shipping');
+  };
   return (
     <Layout title="Shopping Cart">
       <Typography component="h1" variant="h1">
@@ -54,7 +60,7 @@ function CartScreen() {
       {cartItems.length === 0 ? (
         <>
           Cart Empty{' '}
-          <NextLink href="/" passHref >
+          <NextLink href="/" passHref>
             <Link>Go Shopping</Link>
           </NextLink>
         </>
@@ -135,7 +141,12 @@ function CartScreen() {
                   </Typography>
                 </ListItem>
                 <ListItem>
-                  <Button variant="contained" color="primary" fullWidth>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    onClick={redirectToShipping}
+                  >
                     Check Out
                   </Button>
                 </ListItem>
