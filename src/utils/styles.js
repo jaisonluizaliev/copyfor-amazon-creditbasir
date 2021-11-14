@@ -21,11 +21,15 @@ const useStyles = makeStyles({
   footer: {
     textAlign: 'center',
     fontWeight: 'bolder',
-    margin:  10,
+    margin: 10,
   },
   form: {
     maxWidth: 600,
-    margin: '0 auto', 
+    margin: '0 auto',
+  },
+  navbarButton: {
+    color: '#ffffff',
+    textTransform: 'Capitalize',
   },
 });
 

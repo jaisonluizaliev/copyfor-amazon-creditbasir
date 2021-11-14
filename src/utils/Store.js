@@ -8,6 +8,8 @@ export const actionTypes = {
   DARK_MODE_OFF: 'DARK_MODE_OFF',
   CART_ADD_ITEM: 'CART_ADD_ITEM',
   CART_REMOVE_ITEM: 'CART_REMOVE_ITEM',
+  USER_LOGIN: 'USER_LOGIN',
+  USER_LOGOUT: 'USER_LOGOUT',
 };
 
 const initialState = {
@@ -17,6 +19,9 @@ const initialState = {
       ? JSON.parse(Cookies.get('cardItems'))
       : [],
   },
+  userInfo: Cookies.get('cartItems')
+    ? JSON.parse(Cookies.get('userInfo'))
+    : null,
 };
 
 function reducer(state, action) {
@@ -45,7 +50,11 @@ function reducer(state, action) {
       );
       Cookies.set('cardItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
-    } 
+    }
+    case actionTypes.USER_LOGIN:
+      return { ...state, userInfo: action.payload };
+    case actionTypes.USER_LOGOUT:
+      return { ...state, userInfo: null, cart: { cartItems: [] } };
 
     default:
       return state;

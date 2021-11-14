@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   List,
   ListItem,
@@ -11,20 +11,39 @@ import {
 import NextLink from 'next/link';
 import Layout from '../components/Layout';
 import useStyles from '../utils/styles';
+import { useRouter } from 'next/dist/client/router';
+import { actionTypes, Store } from '../utils/Store';
+import Cookies from 'js-cookie';
 
 export default function Login() {
+  const router = useRouter();
+  const { redirect } = router.query;
+  const { state, dispatch } = useContext(Store);
+  const { userInfo } = state;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
+  useEffect(() => {
+    if (userInfo) {
+      router.push('/');
+    }
+  }, []);
+
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const data = await axios.post('/api/users/login', {email, password})
-      alert('success login', data)
+      const { data } = await axios.post('/api/users/login', {
+        email,
+        password,
+      });
+      dispatch({ type: actionTypes.USER_LOGIN, payload: data });
+      Cookies.set('userInfo', data);
+      router.push(redirect || '/');
+      alert('success login');
     } catch (error) {
-      alert(error.response.data ? error.response.data.message : error.message)
+      alert(error.response.data ? error.response.data.message : error.message);
     }
-  }
+  };
   const styles = useStyles();
   return (
     <Layout title="Login">

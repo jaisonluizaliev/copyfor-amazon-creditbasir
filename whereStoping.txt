@@ -29,9 +29,9 @@ Watch in 3:05:38
 02:49:02 17 Dynamic Import Components OK
 02:53:02 18 Update Remove Cart Items OK
 03:06:27 19 Create Login Page OK
-03:16:36 20 Seed Sample Users HERE
-03:22:16 21 Build Login API
-03:34:48 22 Complete Login Page
+03:16:36 20 Seed Sample Users OK
+03:22:16 21 Build Login API OK
+03:34:48 22 Complete Login Page HERE
 03:48:23 23 Create Register Page
 03:55:48 24 Validate Input Forms
 04:12:13 25 Get Shipping Address 
