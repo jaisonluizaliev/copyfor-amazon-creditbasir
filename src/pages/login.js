@@ -1,5 +1,5 @@
-
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import {
   List,
   ListItem,
@@ -13,10 +13,22 @@ import Layout from '../components/Layout';
 import useStyles from '../utils/styles';
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const data = await axios.post('/api/users/login', {email, password})
+      alert('success login', data)
+    } catch (error) {
+      alert(error.response.data ? error.response.data.message : error.message)
+    }
+  }
   const styles = useStyles();
   return (
     <Layout title="Login">
-      <form className={styles.form}>
+      <form onSubmit={submitHandler} className={styles.form}>
         <Typography component="h1" variant="h1">
           Login
         </Typography>
@@ -28,6 +40,7 @@ export default function Login() {
               label="Email"
               fullWidth
               inputProps={{ type: 'email' }}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </ListItem>
           <ListItem>
@@ -37,6 +50,7 @@ export default function Login() {
               label="Password"
               fullWidth
               inputProps={{ type: 'password' }}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </ListItem>
           <ListItem>
@@ -46,7 +60,7 @@ export default function Login() {
           </ListItem>
           <ListItem>
             Don&apos;t have an account? &nbsp;
-            <NextLink href="register" passHref>
+            <NextLink href="/register" passHref>
               <Link>Register</Link>
             </NextLink>
           </ListItem>
