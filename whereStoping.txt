@@ -8,7 +8,7 @@ on Finish class/tutorial
 git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' &&  git pull && git push
 
 
-Watch in 3:05:38
+Watch again 03:34:48 and rebase the code to main... all code is added in git local branch
 
 00:02:30   1 Introduction OK
 00:09:57   2 Install Tools OK
@@ -31,7 +31,11 @@ Watch in 3:05:38
 03:06:27 19 Create Login Page OK
 03:16:36 20 Seed Sample Users OK
 03:22:16 21 Build Login API OK
+<<<<<<< HEAD
 03:34:48 22 Complete Login Page HERE
+=======
+03:34:48 22 Complete Login Page Pending
+>>>>>>> e5a213a (modified txt)
 03:48:23 23 Create Register Page
 03:55:48 24 Validate Input Forms
 04:12:13 25 Get Shipping Address 
