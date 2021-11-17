@@ -12,14 +12,16 @@ export const actionTypes = {
   USER_LOGOUT: 'USER_LOGOUT',
 };
 
+
+
 const initialState = {
   darkMode: Cookies.get('darkMode') === 'ON' ? true : false,
   cart: {
-    cartItems: Cookies.get('cardItems')
-      ? JSON.parse(Cookies.get('cardItems'))
+    cartItems: Cookies.get('cartItems')
+      ? JSON.parse(Cookies.get('cartItems'))
       : [],
   },
-  userInfo: Cookies.get('cartItems')
+  userInfo: Cookies.get('userInfo')
     ? JSON.parse(Cookies.get('userInfo'))
     : null,
 };

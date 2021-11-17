@@ -26,6 +26,8 @@ export default function Layout({ children, title, description }) {
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { darkMode, cart, userInfo } = state;
+
+  
   const theme = createTheme({
     typography: {
       h1: {

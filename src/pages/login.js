@@ -37,9 +37,8 @@ export default function Login() {
         password,
       });
       dispatch({ type: actionTypes.USER_LOGIN, payload: data });
-      Cookies.set('userInfo', data);
-      router.push(redirect || '/');
-      alert('success login');
+      Cookies.set('userInfo', JSON.stringify(data));
+      router.push(redirect || '/'); 
     } catch (error) {
       alert(error.response.data ? error.response.data.message : error.message);
     }
