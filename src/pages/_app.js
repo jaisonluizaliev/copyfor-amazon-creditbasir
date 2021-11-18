@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import '../styles/globals.css';
 import { StoreProvider } from '../utils/Store';
+import { SnackbarProvider } from 'notistack';
+import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  
   useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
@@ -12,9 +12,11 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <StoreProvider>
-      <Component {...pageProps} />;
-    </StoreProvider>
+    <SnackbarProvider anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
+      <StoreProvider>
+        <Component {...pageProps} />;
+      </StoreProvider>
+    </SnackbarProvider>
   );
 }
 
