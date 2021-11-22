@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
-import { Store } from '../utils/Store';
+import { Store, actionTypes } from '../utils/Store';
 import useStyles from '../utils/styles';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
@@ -42,7 +42,7 @@ export default function Shipping() {
   const styles = useStyles();
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
+      type: actionTypes.SAVE_SHIPPING_ADDRESS,
       payload: { fullName, address, city, postalCode, country },
     });
     Cookies.set('shippingAddress', {

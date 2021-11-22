@@ -8,6 +8,7 @@ export const actionTypes = {
   CART_REMOVE_ITEM: 'CART_REMOVE_ITEM',
   DARK_MODE_OFF: 'DARK_MODE_OFF',
   DARK_MODE_ON: 'DARK_MODE_ON',
+  SAVE_PAYMENT_METHOD : 'SAVE_PAYMENT_METHOD',
   SAVE_SHIPPING_ADDRESS: 'SAVE_SHIPPING_ADDRESS',
   USER_LOGIN: 'USER_LOGIN',
   USER_LOGOUT: 'USER_LOGOUT',
@@ -59,6 +60,13 @@ function reducer(state, action) {
       return {
         ...state,
         cart: { ...state.cart, shippingAddress: action.payload },
+      };
+
+    
+    case actionTypes.SAVE_PAYMENT_METHOD:
+      return {
+        ...state,
+        cart: { ...state.cart, paymentMethod: action.payload },
       };
     case actionTypes.USER_LOGIN:
       return { ...state, userInfo: action.payload };

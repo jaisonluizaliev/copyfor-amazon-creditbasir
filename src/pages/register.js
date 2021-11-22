@@ -15,7 +15,7 @@ import { useRouter } from 'next/dist/client/router';
 import { actionTypes, Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack';
+// import { useSnackbar } from 'notistack';
 
 export default function Register() {
   const {
@@ -23,7 +23,7 @@ export default function Register() {
     control,
     formState: { errors },
   } = useForm();
-  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
+  // const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { redirect } = router.query;
   const { state, dispatch } = useContext(Store);
@@ -37,9 +37,9 @@ export default function Register() {
   }, []);
 
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
-    closeSnackbar();
+    // closeSnackbar();
     if (password !== confirmPassword) {
-      enqueueSnackbar("Password isn't match", { variant: 'error' });
+      alert("Password isn't match", { variant: 'error' });
       return;
     }
 

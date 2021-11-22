@@ -32,7 +32,9 @@ const useStyles = makeStyles({
     color: '#ffffff',
     textTransform: 'Capitalize',
   },
-  
+  backgroundStepper: {
+    backgroundColor: 'transparent',
+  }
 });
 
 export default useStyles;

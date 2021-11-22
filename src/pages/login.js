@@ -15,7 +15,7 @@ import { useRouter } from 'next/dist/client/router';
 import { actionTypes, Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
-import { useSnackbar } from 'notistack';
+// import { useSnackbar } from 'notistack';
 
 export default function Login() {
   const {
@@ -23,7 +23,7 @@ export default function Login() {
     control,
     formState: { errors },
   } = useForm();
-  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
+  // const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const router = useRouter();
   const { redirect } = router.query;
   const { state, dispatch } = useContext(Store);
@@ -37,7 +37,7 @@ export default function Login() {
   }, []);
 
   const submitHandler = async ({ email, password }) => {
-    closeSnackbar();
+    // closeSnackbar();
     try {
       const { data } = await axios.post('/api/users/login', {
         email,
@@ -47,7 +47,7 @@ export default function Login() {
       Cookies.set('userInfo', JSON.stringify(data));
       router.push(redirect || '/');
     } catch (error) {
-      enqueueSnackbar(
+      alert(
         error.response.data ? error.response.data.message : error.message,
         { error }
       );
