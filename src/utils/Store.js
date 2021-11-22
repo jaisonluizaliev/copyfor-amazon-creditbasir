@@ -4,15 +4,14 @@ import { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 export const actionTypes = {
-  DARK_MODE_ON: 'DARK_MODE_ON',
-  DARK_MODE_OFF: 'DARK_MODE_OFF',
   CART_ADD_ITEM: 'CART_ADD_ITEM',
   CART_REMOVE_ITEM: 'CART_REMOVE_ITEM',
+  DARK_MODE_OFF: 'DARK_MODE_OFF',
+  DARK_MODE_ON: 'DARK_MODE_ON',
+  SAVE_SHIPPING_ADDRESS: 'SAVE_SHIPPING_ADDRESS',
   USER_LOGIN: 'USER_LOGIN',
   USER_LOGOUT: 'USER_LOGOUT',
 };
-
-
 
 const initialState = {
   darkMode: Cookies.get('darkMode') === 'ON' ? true : false,
@@ -20,6 +19,9 @@ const initialState = {
     cartItems: Cookies.get('cartItems')
       ? JSON.parse(Cookies.get('cartItems'))
       : [],
+    shippingAddress: Cookies.get('shippingAddress')
+      ? JSON.parse(Cookies.get('shippingAddress'))
+      : {},
   },
   userInfo: Cookies.get('userInfo')
     ? JSON.parse(Cookies.get('userInfo'))
@@ -53,6 +55,11 @@ function reducer(state, action) {
       Cookies.set('cardItems', JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case actionTypes.SAVE_SHIPPING_ADDRESS:
+      return {
+        ...state,
+        cart: { ...state.cart, shippingAddress: action.payload },
+      };
     case actionTypes.USER_LOGIN:
       return { ...state, userInfo: action.payload };
     case actionTypes.USER_LOGOUT:

@@ -21,7 +21,8 @@ const useStyles = makeStyles({
   footer: {
     textAlign: 'center',
     fontWeight: 'bolder',
-    margin: 10,
+    marginTop: 20,
+
   },
   form: {
     maxWidth: 600,
@@ -31,6 +32,7 @@ const useStyles = makeStyles({
     color: '#ffffff',
     textTransform: 'Capitalize',
   },
+  
 });
 
 export default useStyles;

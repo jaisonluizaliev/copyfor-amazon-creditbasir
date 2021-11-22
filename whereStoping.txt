@@ -8,7 +8,7 @@ on Finish class/tutorial
 git add . && git commit -m 'name commit' && git checkout main && git rebase 'name branch of started' &&  git pull && git push
 
 
-Watch 03:55:00
+Watch 04:21:40
 
 00:02:30   1 Introduction OK
 00:09:57   2 Install Tools OK
@@ -37,8 +37,8 @@ Watch 03:55:00
 03:34:48 22 Complete Login Page OK
 >>>>>>> e5a213a (modified txt)
 03:48:23 23 Create Register Page OK
-03:55:48 24 Validate Input Forms here
-04:12:13 25 Get Shipping Address 
+03:55:48 24 Validate Input Forms OK
+04:12:13 25 Get Shipping Address HERE
 04:25:28 26 Select Payment Method
 04:40:28 27 Preview Order
 04:53:43 28 Save Order
