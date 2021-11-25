@@ -18,11 +18,14 @@ const useStyles = makeStyles({
   main: {
     minHeight: '80vh',
   },
+  section: {
+    marginTop: 0,
+    marginBottom: 10,
+  },
   footer: {
     textAlign: 'center',
     fontWeight: 'bolder',
     marginTop: 20,
-
   },
   form: {
     maxWidth: 600,
@@ -34,7 +37,7 @@ const useStyles = makeStyles({
   },
   backgroundStepper: {
     backgroundColor: 'transparent',
-  }
+  },
 });
 
 export default useStyles;

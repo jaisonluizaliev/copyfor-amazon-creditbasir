@@ -23,6 +23,9 @@ const initialState = {
     shippingAddress: Cookies.get('shippingAddress')
       ? JSON.parse(Cookies.get('shippingAddress'))
       : {},
+    paymentMethod: Cookies.get('paymentMethod')
+      ? Cookies.get('paymentMethod')
+      : '',
   },
   userInfo: Cookies.get('userInfo')
     ? JSON.parse(Cookies.get('userInfo'))
@@ -46,14 +49,15 @@ function reducer(state, action) {
           )
         : [...state.cart.cartItems, newItem];
 
-      Cookies.set('cardItems', JSON.stringify(cartItems));
+      Cookies.set('cartItems', [...cartItems]);
       return { ...state, cart: { ...state.cart, cartItems } };
     }
     case actionTypes.CART_REMOVE_ITEM: {
       const cartItems = state.cart.cartItems.filter(
         (item) => item._id !== action.payload._id
       );
-      Cookies.set('cardItems', JSON.stringify(cartItems));
+      Cookies.set('cartItems', [...cartItems]);
+
       return { ...state, cart: { ...state.cart, cartItems } };
     }
     case actionTypes.SAVE_SHIPPING_ADDRESS:
@@ -62,7 +66,6 @@ function reducer(state, action) {
         cart: { ...state.cart, shippingAddress: action.payload },
       };
 
-    
     case actionTypes.SAVE_PAYMENT_METHOD:
       return {
         ...state,

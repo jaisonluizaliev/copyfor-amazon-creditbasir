@@ -38,9 +38,9 @@ Watch 04:21:40
 >>>>>>> e5a213a (modified txt)
 03:48:23 23 Create Register Page OK
 03:55:48 24 Validate Input Forms OK
-04:12:13 25 Get Shipping Address HERE
-04:25:28 26 Select Payment Method
-04:40:28 27 Preview Order
+04:12:13 25 Get Shipping Address OK
+04:25:28 26 Select Payment Method OK
+04:40:28 27 Preview Order HERE
 04:53:43 28 Save Order
 05:11:28 29 Create Order Details Page
 05:34:30 30 Pay Order By PayPal

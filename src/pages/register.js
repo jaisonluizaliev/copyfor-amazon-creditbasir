@@ -53,7 +53,7 @@ export default function Register() {
       Cookies.set('userInfo', JSON.stringify(data));
       router.push(redirect || '/');
     } catch (error) {
-      enqueueSnackbar(
+      alert(
         error.response.data ? error.response.data.message : error.message,
         { error }
       );
