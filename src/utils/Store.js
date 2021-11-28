@@ -5,6 +5,7 @@ export const Store = createContext();
 
 export const actionTypes = {
   CART_ADD_ITEM: 'CART_ADD_ITEM',
+  CART_CLEAR: 'CART_CLEAR',
   CART_REMOVE_ITEM: 'CART_REMOVE_ITEM',
   DARK_MODE_OFF: 'DARK_MODE_OFF',
   DARK_MODE_ON: 'DARK_MODE_ON',

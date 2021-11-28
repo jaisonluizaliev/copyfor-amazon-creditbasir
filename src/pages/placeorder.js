@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from 'react';
-import {  Store } from '../utils/Store';
+import React, { useContext, useEffect, useState } from 'react';
+import { actionTypes, Store } from '../utils/Store';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import Layout from '../components/Layout';
@@ -7,6 +7,7 @@ import Image from 'next/image';
 import {
   Button,
   Card,
+  CircularProgress,
   Grid,
   Link,
   List,
@@ -22,32 +23,70 @@ import {
 import useStyles from '../utils/styles';
 import CheckoutWizard from '../components/CheckoutWizard';
 import { useRouter } from 'next/router';
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 function PlaceOrder() {
   const styles = useStyles();
   const router = useRouter();
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const {
+    userInfo,
     cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
   const round2 = (num) => Math.round((num * 100) / Number.EPSILON) / 100; //123.456 === 123.45
-  useEffect(()=> {
+  useEffect(() => {
     if (!paymentMethod) {
       router.push('/payment');
     }
+    if (cartItems.length === 0) {
+      router.push('/cart');
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0)
-  round2(itemsPrice)
+  }, []);
+  const itemsPrice = cartItems.reduce((a, c) => a + c.price * c.quantity, 0);
+  round2(itemsPrice);
   const taxPrice = itemsPrice * 0.15;
-  round2(taxPrice)
+  round2(taxPrice);
   const shippingPrice = itemsPrice > 200 ? 0 : 15;
   const totalPrice = itemsPrice + shippingPrice + taxPrice;
-  round2(totalPrice)
+  round2(totalPrice);
+  const [loading, setLoading] = useState(false);
+
+  const placeOrderHandler = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        '/api/orders',
+        {
+          orderItems: cartItems,
+          shippingAddress,
+          paymentMethod,
+          itemsPrice,
+          shippingPrice,
+          taxPrice,
+          totalPrice,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+      dispatch({ type: actionTypes.CART_CLEAR });
+      Cookies.remove('cartItems');
+      setLoading(false);
+      router.push(`/order/${data._id}`)
+    } catch (error) {
+      setLoading(false);
+      alert(error);
+      
+
+    }
+  };
 
   return (
     <Layout title="Place Order">
-      <CheckoutWizard activeStep={3}/>
+      <CheckoutWizard activeStep={3} />
       <Typography component="h1" variant="h1">
         Place Order
       </Typography>
@@ -188,10 +227,20 @@ function PlaceOrder() {
                 </Grid>
               </ListItem>
               <ListItem>
-                <Button variant="contained" color="primary" fullWidth>
+                <Button
+                  onClick={placeOrderHandler}
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
                   Place Order
                 </Button>
               </ListItem>
+              {loading && (
+                <ListItem>
+                  <CircularProgress />
+                </ListItem>
+              )}
             </List>
           </Card>
         </Grid>
