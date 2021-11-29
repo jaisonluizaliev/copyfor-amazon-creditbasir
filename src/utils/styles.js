@@ -38,6 +38,9 @@ const useStyles = makeStyles({
   backgroundStepper: {
     backgroundColor: 'transparent',
   },
+  error: {
+    color: '#f04040',
+  }
 });
 
 export default useStyles;
