@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { StoreProvider } from '../utils/Store';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 // import { SnackbarProvider } from 'notistack';
 import '../styles/globals.css';
 
@@ -9,13 +10,15 @@ function MyApp({ Component, pageProps }) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, []);
+  }, []); 
 
   return (
     // <SnackbarProvider anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
-      <StoreProvider>
+    <StoreProvider>
+      <PayPalScriptProvider deferLoading={true}> 
         <Component {...pageProps} />;
-      </StoreProvider>
+      </PayPalScriptProvider>
+    </StoreProvider>
     // </SnackbarProvider>
   );
 }

@@ -11,7 +11,7 @@ import {
 import NextLink from 'next/link';
 import Layout from '../components/Layout';
 import useStyles from '../utils/styles';
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { actionTypes, Store } from '../utils/Store';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
