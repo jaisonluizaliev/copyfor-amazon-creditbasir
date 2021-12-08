@@ -28,6 +28,7 @@ const useStyles = makeStyles({
     marginTop: 20,
   },
   form: {
+    width: '100%',
     maxWidth: 600,
     margin: '0 auto',
   },
